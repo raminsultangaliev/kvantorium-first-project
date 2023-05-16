@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Game over!</title>
+    <style>
+        @font-face {
+            font-family: "sonic-outlined";
+            src: url(fonts/sonic/Sonic_outlined.ttf) format("truetype");
+        }
+
+        @font-face {
+            font-family: "depixel-breit";
+            src: url(fonts/depixel/DePixelBreit.ttf) format("truetype");
+        }
+
+        @font-face {
+            font-family: "depixel-klein";
+            src: url(fonts/depixel/DePixelKlein.ttf) format("truetype");
+        }
+
+        body {
+            background-image: url(https://funart.pro/uploads/posts/2021-04/1618502434_11-funart_pro-p-oboi-fon-zvezdnoe-nebo-fon-11.jpg);
+        }
+
+        #game-over {
+            font-family: "sonic-outlined";
+            font-size: 100px;
+            color: blueviolet;
+            text-align: center;
+            margin-top: 100px;
+            margin-bottom: 60px;
+        }
+
+        #score-counter {
+            font-family: "depixel-breit";
+            font-size: 50px;
+            color: blueviolet;
+            text-align: center;
+            margin-bottom: 60px;
+        }
+
+        #text {
+            font-family: "depixel-klein";
+            font-size: 40px;
+            color: blueviolet;
+            text-align: center;
+            margin-bottom: 200px;
+        }
+
+        #to-menu {
+            text-decoration: none;
+            color: blueviolet;
+            position: relative;
+        }
+
+        #to-menu p {
+            font-family: "depixel-klein";
+            font-size: 70px;
+            text-align: center;
+        }
+
+        #to-menu p:hover{
+            text-decoration:underline;
+        }
+    </style>
+</head>
+
+<body>
+    <h1 id="game-over">game over</h1>
+    <h2 id="score-counter"></h2>
+    <h6 id="text"></h6>
+    <a id="to-menu" href="menu.html">
+        <p>Back to menu...</p>
+    </a>
+
+    <script>
+        let score
+        score = localStorage.getItem('score')
+        document.getElementById('score-counter').innerHTML = "Score: " + score
+
+        var str = "Game over!  "
+        let list = []
+        for (let i in str) {
+            list.push(str[i])
+        }
+
+        window.setInterval(function () {
+            list.push(list.shift())
+            document.title = list.join('')
+        }, 300)
+
+        let determination = ["Don't lose hope!", "The future depends on you!", "You cannot give up just yet! Stay determined..."]
+        let rand = Math.floor(Math.random() * determination.length)
+
+        document.getElementById('text').innerHTML = determination[rand]
+    </script>
+</body>
+
+</html>
